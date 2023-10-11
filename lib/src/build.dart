@@ -18,7 +18,7 @@ class CoreBuild extends StatelessWidget {
   final BoxConstraints? constraints;
 
   EdgeInsetsGeometry? get _paddingIncludingDecoration {
-    if (decoration == null || decoration!.padding == null)
+    if (decoration == null)
       return styleModel?.padding;
     final EdgeInsetsGeometry? decorationPadding = decoration!.padding;
     if (styleModel?.padding == null) return decorationPadding;
