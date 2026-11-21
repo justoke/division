@@ -1,5 +1,5 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'function/hex_color.dart';
 // import 'style.dart';
@@ -105,12 +105,6 @@ class BackgroundModel with ChangeNotifier {
   }
 
   void blendMode(BlendMode blendMode) => _blendMode = blendMode;
-}
-
-DecorationImage? _image;
-
-void notifyListeners() {
-  // Notify listeners here
 }
 
 class AlignmentModel with ChangeNotifier {
@@ -315,11 +309,14 @@ class StyleModel {
     if (_transform != null) return _transform;
 
     if ((scale ?? rotate ?? offset) != null) {
+      final double s = scale ?? 1.0;
       return Matrix4.rotationZ(rotate ?? 0.0)
-        ..scale(scale ?? 1.0)
-        ..translate(
+        ..scaleByDouble(s, s, s, 1.0)
+        ..translateByDouble(
           offset?.dx ?? 0.0,
           offset?.dy ?? 0.0,
+          0.0,
+          1.0,
         );
     }
     return null;

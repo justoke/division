@@ -1,3 +1,8 @@
+## 0.8.9
+* Migrated to `package:material_ui` for Flutter 3.50
+* Replaced deprecated `Color.withOpacity` with `withValues`
+* Replaced deprecated `Matrix4.scale`/`translate` with `scaleByDouble`/`translateByDouble`
+
 ## 0.8.8
 * Added `autoFocus` parameter to the `editable` method in `TxtStyle`
 * Added `textOverflow` method to `TxtStyle`

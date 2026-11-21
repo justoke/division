@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'model.dart';
 
@@ -46,7 +46,6 @@ class CoreBuild extends StatelessWidget {
     if (effectivePadding != null)
       widgetTree = Padding(padding: effectivePadding, child: widgetTree);
 
-    // ignore: missing_enum_constant_in_switch
     switch (styleModel?.overflow) {
       case OverflowType.scroll:
         widgetTree = SingleChildScrollView(
@@ -69,6 +68,8 @@ class CoreBuild extends StatelessWidget {
                 : null,
             alignment: styleModel?.alignmentContent ?? Alignment.topCenter);
         break;
+      case null:
+        break;
     }
 
     if (styleModel?.ripple != null && styleModel?.ripple?.enable == true) {
@@ -87,7 +88,7 @@ class CoreBuild extends StatelessWidget {
     if (decoration != null)
       widgetTree = DecoratedBox(decoration: decoration!, child: widgetTree);
 
-    if (gestureModel != null) widgetTree = gestures(widgetTree!, gestureModel!);
+    if (gestureModel != null) widgetTree = gestures(widgetTree!, gestureModel);
 
     if (constraints != null)
       widgetTree = ConstrainedBox(constraints: constraints!, child: widgetTree);
@@ -256,7 +257,9 @@ class _TxtBuildEditableState extends State<TxtBuildEditable> {
 
   void _updatePlaceholderTextStyle() {
     _placeholderTextStyle = widget.textStyle?.copyWith(
-      color: widget.textStyle?.color?.withOpacity(0.7) ?? Colors.grey,
+      color: widget.textStyle?.color
+              ?.withValues(alpha: widget.textStyle!.color!.a * 0.7) ??
+          Colors.grey,
       fontWeight: FontWeight.normal,
     );
   }

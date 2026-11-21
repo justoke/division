@@ -1,5 +1,5 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math';
 
 import 'model.dart';
@@ -234,7 +234,8 @@ abstract class CoreStyle {
     double calculatedOpacity = (0.5 - (sqrt(elevation) / 19)) * opacity;
     if (calculatedOpacity < 0.0) calculatedOpacity = 0.0;
 
-    final Color colorWithOpacity = color.withOpacity(calculatedOpacity);
+    final Color colorWithOpacity =
+        color.withValues(alpha: color.a * calculatedOpacity);
 
     _styleModel.boxShadow = [
       BoxShadow(
@@ -424,7 +425,8 @@ class TxtStyle extends CoreStyle {
     double calculatedOpacity = (0.5 - (sqrt(elevation) / 19)) * opacity;
     if (calculatedOpacity < 0.0) calculatedOpacity = 0.0;
 
-    final Color colorWithOpacity = color.withOpacity(calculatedOpacity);
+    final Color colorWithOpacity =
+        color.withValues(alpha: color.a * calculatedOpacity);
 
     _textModel.textShadow = [
       Shadow(
